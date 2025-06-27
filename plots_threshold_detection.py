@@ -9,7 +9,6 @@ from scipy.signal import savgol_filter, find_peaks
 from skimage.filters import threshold_otsu, threshold_triangle, threshold_minimum
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
-from scipy.ndimage import gaussian_filter1d
 np.random.seed(42) 
 
 
@@ -86,7 +85,7 @@ def calculate_thresholds(data):
     thresholds['GMM'] = np.mean(gmm.means_)
     
     return thresholds
-def create_mutiple_dist_histogram(data_list, label_list, color_list, plot_name, column, tick_space = 0.5, transform_method = "sqrt"):
+def create_mutiple_dist_histogram(data_list, label_list, color_list, plot_name, column, tick_space = 0.5, transform_method = "log10"):
     plt.figure(figsize=(10, 6))
     ax = plt.gca()
     plot_title = f'{column} Distribution'
@@ -123,7 +122,7 @@ def safe_transform(data, method="arcsinh", scale=10):
     else:
         raise ValueError("Choose: arcsinh/log10/sqrt")
 
-def create_single_intensity_histogram(data_raw, label, plot_name, column, get_sattelpunkt=True, tick_space = 0.5, transform_method = "sqrt", show_thresholds = True):
+def create_single_intensity_histogram(data_raw, label, plot_name, column, get_sattelpunkt=True, tick_space = 0.5, transform_method = "log10", show_thresholds = True):
     print(column)
     try:
         title = f'{plot_name}.png'
