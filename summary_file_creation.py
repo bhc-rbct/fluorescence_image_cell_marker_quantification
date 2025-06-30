@@ -49,6 +49,7 @@ def create_summary_csv(folder_path, output_csv_path):
     
     # Calculate all required counts
     summary_data = {
+        'Total_cells': [len(whole_image_df)],
         'Total_panCK_pos': [len(panCK_pos)],
         'KLF5_Bcl_xL_double_pos': [len(panCK_pos[panCK_pos['KLF5_pos'] & panCK_pos['Bcl_xL_pos']])],
         'KLF5_single_pos': [len(panCK_pos[panCK_pos['KLF5_pos'] & ~panCK_pos['Bcl_xL_pos']])],
